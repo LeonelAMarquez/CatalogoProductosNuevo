@@ -1,0 +1,43 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CatalogoProductosNuevo.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="es">
+    <head runat="server">
+        <meta charset="utf-8" />
+        <title><%: Page.Title %> - TuElectro</title>
+        <link href="Content/bootstrap.css" rel="stylesheet" />
+    </head>
+    <body>
+        <form id="form1" runat="server" class="needs-validation" novalidate>
+            <asp:ScriptManager ID="sm" runat="server" />
+            <header class="bg-dark text-white p-3 mb-4">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container">
+                        <!--<img src="" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">-->
+                        <h1 Class="h3">TuElectro</h1>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul Class="navbar-nav ms-3">
+                                <li Class="nav-item">
+                                    <a class="nav-link text-white" href="Home.aspx">Home</a>
+                                </li>
+                            </ul>
+                            <nav class="d-flex ms-auto">
+                                <a class="btn btn-success" href="Voucher.aspx">Cargar Voucher</a>
+                            </nav>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+    
+            <main class="container">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </main>
+    
+            <footer class="bg-light text-center py-3 mt-4">
+                <p>&copy; <%: DateTime.Now.Year %> - TuElectro</p>
+            </footer>
+        </form>
+    
+        <script src="Scripts/bootstrap.bundle.js"></script>
+    </body>
+</html>
