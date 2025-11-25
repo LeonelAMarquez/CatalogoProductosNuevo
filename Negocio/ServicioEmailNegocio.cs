@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Negocio
 {
-    public class ServicioEmail
+    public class ServicioEmailNegocio
     {
         private const string SmtpHost = "smtp.outlook.com";
         private const int SmtpPort = 587;

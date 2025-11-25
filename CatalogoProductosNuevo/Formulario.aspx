@@ -3,19 +3,31 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <style>
-        .form-control.is-invalid, input.is-invalid{ border-color:#dc3545!important; box-shadow:0 0 0 .2rem rgba(220,53,69,.1);}
-        label.form-label.text-danger{ color:#dc3545!important; }
-        label.form-label.text-danger::after{
-        content:"\2716";
-        display:inline-block;
-        margin-left:.5rem;
-        color:#dc3545;
-        font-weight:700;
-        font-size:.9rem;
-        line-height:1;
-        vertical-align:middle;
+        .form-control.is-invalid, input.is-invalid {
+            border-color: #dc3545 !important;
+            box-shadow: 0 0 0 .2rem rgba(220,53,69,.1);
         }
-        .field-error{ color:#dc3545; font-size:.875rem; display:block; }
+
+        label.form-label.text-danger {
+            color: #dc3545 !important;
+        }
+
+            label.form-label.text-danger::after {
+                content: "\2716";
+                display: inline-block;
+                margin-left: .5rem;
+                color: #dc3545;
+                font-weight: 700;
+                font-size: .9rem;
+                line-height: 1;
+                vertical-align: middle;
+            }
+
+        .field-error {
+            color: #dc3545;
+            font-size: .875rem;
+            display: block;
+        }
     </style>
 
     <div class="container py-4">
@@ -119,8 +131,11 @@
                 </div>
 
                 <div class="mt-3">
-                    <asp:Button ID="btnParticipar" runat="server" CssClass="btn btn-primary"
+                    <asp:Button ID="btnParticipar"
+                        runat="server"
+                        CssClass="btn btn-primary"
                         Text="¡Participar!"
+                        OnClick="btnParticipar_Click"
                         OnClientClick="return markInvalidAndValidate();" />
                 </div>
 
@@ -135,6 +150,7 @@
             if (!el) el = document.querySelector("[name$='$" + id + "']");
             return el;
         }
+
         function validatorHasError(v) {
             if (v.isvalid === false) return true;
             if (v.style && v.style.display !== "none") return true;
@@ -144,6 +160,7 @@
             } catch (_) { }
             return false;
         }
+
         function applyValidationStyles() {
             if (typeof Page_Validators === "undefined") return;
             var byControl = {};
@@ -167,6 +184,15 @@
                 if (info.lbl) info.lbl.classList.toggle("text-danger", info.hasError);
             });
         }
+
+        function markInvalidAndValidate() {
+            if (typeof Page_ClientValidate === "function") {
+                Page_ClientValidate();
+            }
+            applyValidationStyles();
+            return window.Page_IsValid !== false;
+        }
+
         (function () {
             var form = document.querySelector("form.needs-validation");
             if (!form) return;
@@ -191,5 +217,6 @@
             });
         })();
     </script>
+
 
 </asp:Content>
